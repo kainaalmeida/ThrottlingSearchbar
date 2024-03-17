@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SearchItemsDemo.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:SearchItemsDemo.ViewModels"
+    x:DataType="vm:MainViewModel">
+
+    <Grid Margin="20" RowDefinitions="auto,*">
+
+        <Entry Placeholder="Digite aqui...">
+            <Entry.Behaviors>
+                <toolKit:UserStoppedTypingBehavior
+                    Command="{Binding SearchCommand}"
+                    MinimumLengthThreshold="0"
+                    ShouldDismissKeyboardAutomatically="True"
+                    StoppedTypingTimeThreshold="1000" />
+            </Entry.Behaviors>
+        </Entry>
+
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding ItemsFiltereds}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding .}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>
